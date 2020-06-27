@@ -2,7 +2,6 @@
 
 const frames = figma.currentPage.findAll(node => node.type === "FRAME" && node.parent.type != "FRAME")
 const instances = figma.currentPage.findAll(node => node.type === "INSTANCE" && node.parent.type != "INSTANCE" && node.parent.type != "FRAME")
-
 const allNodes = [...frames, ...instances]
 
 // ----------------------------------FIND DUPLICATES------------------------------------
