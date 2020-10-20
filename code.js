@@ -1,8 +1,9 @@
 // ----------------------------------FIGMA OBJECTS-------------------------------------
 
 const frames = figma.currentPage.findAll(node => node.type === "FRAME" && node.parent.type != "FRAME")
-const instances = figma.currentPage.findAll(node => node.type === "INSTANCE" && node.parent.type != "INSTANCE" && node.parent.type != "FRAME")
-const allNodes = [...frames, ...instances]
+const components = figma.currentPage.findAll(node => node.type === "COMPONENT" && node.parent.type != "COMPONENT")
+const instances = figma.currentPage.findAll(node => node.type === "INSTANCE" && node.parent.type != "INSTANCE" && node.parent.type != "FRAME" && node.parent.type != "COMPONENT")
+const allNodes = [...frames, ...instances, ...components]
 
 // ----------------------------------FIND DUPLICATES------------------------------------
 
@@ -20,5 +21,5 @@ if (duplicates.length > 0) {
   figma.viewport.scrollAndZoomIntoView(duplicates)
   figma.closePlugin("🚨Duplicates")
 } else {
-  figma.closePlugin("👌You don't have frames and instances duplicates")
+  figma.closePlugin("👌You don't have duplicates")
 }
